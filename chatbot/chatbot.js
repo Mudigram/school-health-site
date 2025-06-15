@@ -69,24 +69,44 @@ function appendMessage(sender, message) {
 function getBotReply(text) {
   const msg = text.toLowerCase();
 
-  if (msg.includes("emergency")) return "Please call the school clinic immediately or visit the health center.";
-  if (msg.includes("seizure")) return "Keep the person safe, turn them on their side, and clear the area. Don't hold them down. Get help fast!";
-  if (msg.includes("cut") || msg.includes("bleeding")) return "Apply pressure to the wound with a clean cloth and seek help.";
-  if (msg.includes("headache")) return "Drink water, rest, and visit the clinic if it persists.";
-  if (msg.includes("malaria")) return "Visit the clinic for a test. Do not self-medicate.";
-  if (msg.includes("seizure")) return "Turn the person to their side, clear the area of danger, and don't hold them down. Call for help!";
-if (msg.includes("faint") || msg.includes("collapsed")) return "Lay the person flat, raise their legs, and ensure fresh air. Seek medical attention.";
-if (msg.includes("unconscious")) return "Call for medical help immediately. Check breathing and stay with the person.";
-if (msg.includes("burn")) return "Cool the burn with running water for 10–15 minutes. Don’t apply creams or oils.";
-if (msg.includes("anxiety") || msg.includes("panic")) return "Take deep breaths. You can also come in and speak to someone confidentially.";
-if (msg.includes("stress")) return "Try resting or taking a walk. If it becomes overwhelming, the clinic is here to help.";
-if (msg.includes("sad") || msg.includes("depressed")) return "You're not alone. We have mental health support available—please reach out.";
-if (msg.includes("painkiller")) return "We can provide safe medication at the clinic. Always avoid self-medicating.";
-if (msg.includes("paracetamol") || msg.includes("drug")) return "Please only take medication prescribed by a professional.";
-if (msg.includes("clinic hours") || msg.includes("open")) return "The clinic is open from 9:00 AM to 4:00 PM, Monday to Friday.";
-if (msg.includes("visit") || msg.includes("see doctor")) return "You can walk into the clinic during operating hours or call for assistance.";
-if (msg.includes("where is the clinic")) return "The health center is located beside the student affairs building.";
+  const responseMap = [
+    { keywords: ["emergency"], response: "Please call the school clinic immediately or visit the health center." },
+    { keywords: ["seizure"], response: "Keep the person safe, turn them on their side, and clear the area. Don't hold them down. Get help fast!" },
+    { keywords: ["cut", "bleeding"], response: "Apply pressure to the wound with a clean cloth and seek help." },
+    { keywords: ["headache"], response: "Drink water, rest, and visit the clinic if it persists." },
+    { keywords: ["malaria"], response: "Visit the clinic for a test. Do not self-medicate." },
+    { keywords: ["faint", "collapsed"], response: "Lay the person flat, raise their legs, and ensure fresh air. Seek medical attention." },
+    { keywords: ["unconscious"], response: "Call for medical help immediately. Check breathing and stay with the person." },
+    { keywords: ["burn"], response: "Cool the burn with running water for 10–15 minutes. Don’t apply creams or oils." },
+    { keywords: ["anxiety", "panic"], response: "Take deep breaths. You can also come in and speak to someone confidentially." },
+    { keywords: ["stress"], response: "Try resting or taking a walk. If it becomes overwhelming, the clinic is here to help." },
+    { keywords: ["sad", "depressed"], response: "You're not alone. We have mental health support available—please reach out." },
+    { keywords: ["painkiller"], response: "We can provide safe medication at the clinic. Always avoid self-medicating." },
+    { keywords: ["paracetamol", "drug"], response: "Please only take medication prescribed by a professional." },
+    { keywords: ["clinic hours", "open"], response: "The clinic is open from 9:00 AM to 4:00 PM, Monday to Friday." },
+    { keywords: ["visit", "see doctor"], response: "You can walk into the clinic during operating hours or call for assistance." },
+    { keywords: ["where is the clinic"], response: "The health center is located beside the student affairs building." },
+    { keywords: ["sick", "not feeling well"], response: "I'm sorry to hear that. Please visit the health center during clinic hours or call for help if it's urgent." },
+    { keywords: ["fever", "cold", "flu"], response: "Make sure to rest, stay hydrated, and visit the clinic for a proper diagnosis." },
+    { keywords: ["vomit", "diarrhea", "stomach"], response: "Rest, drink clean water, and avoid solid food until you feel better. Visit the clinic if it continues." },
+    { keywords: ["allergy", "allergic"], response: "Avoid known allergens and visit the clinic immediately if you're having a reaction." },
+    { keywords: ["period", "menstrual", "cramps"], response: "If you're in discomfort, the clinic can help with pain relief and advice. You’re welcome to walk in." },
+    { keywords: ["covid", "corona"], response: "If you're experiencing symptoms like cough, fever, or loss of smell, isolate and visit the clinic immediately for a test." },
+    { keywords: ["vaccine", "test"], response: "You can inquire about available vaccines and tests at the clinic reception during working hours." },
+    { keywords: ["appointment"], response: "Use the form on the website to book a consultation or visit the clinic directly." },
+    { keywords: ["hello", "hi"], response: "Hi! How can I assist you with your health today?" },
+    { keywords: ["thank you", "thanks"], response: "You're welcome! Stay safe and healthy." },
+    { keywords: ["what should i do", "help me"], response: "You can tell me what you're experiencing or go directly to the health center if it feels urgent." }
+  ];
 
+  for (const entry of responseMap) {
+    for (const keyword of entry.keywords) {
+      if (msg.includes(keyword)) {
+        return entry.response;
+      }
+    }
+  }
 
   return "I'm not sure. Please visit the clinic or call the medical line for urgent care.";
 }
+
