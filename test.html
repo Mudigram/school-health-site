@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test AI Chatbot</title>
+  </head>
+  <body>
+    <h2>Ask a Question</h2>
+    <input type="text" id="userInput" placeholder="Type your message here..." />
+    <button onclick="sendMessage()">Send</button>
+
+    <h3>Bot Response:</h3>
+    <p id="responseArea">...</p>
+
+    <script>
+      async function sendMessage() {
+        const message = document.getElementById("userInput").value;
+
+        try {
+          const res = await fetch(
+            "https://e45c-102-89-75-144.ngrok-free.app/webhook/ai-chatbot",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                message: "test",
+              }),
+            }
+          );
+
+          const data = await res.json();
+          document.getElementById("responseArea").innerHTML =
+            data.reply || "No reply found.";
+        } catch (err) {
+          console.error("Error sending message:", err);
+          document.getElementById("responseArea").innerHTML =
+            "Error: " + err.message;
+        }
+      }
+    </script>
+  </body>
+</html>
