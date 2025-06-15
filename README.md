@@ -74,5 +74,5 @@ Big thanks to Angela Yu’s Web Dev Bootcamp for the frontend foundation.
 
 ## 📫 Contact
 
-Built by [@nekromainder on Twitter](https://twitter.com/TheMudiaga)  
+Built by [@TheMudiaga on Twitter](https://twitter.com/TheMudiaga)  
 Feel free to reach out or share feedback!
