@@ -91,12 +91,12 @@ function getBotReply(text) {
     { keywords: ["vomit", "diarrhea", "stomach"], response: "Rest, drink clean water, and avoid solid food until you feel better. Visit the clinic if it continues." },
     { keywords: ["allergy", "allergic"], response: "Avoid known allergens and visit the clinic immediately if you're having a reaction." },
     { keywords: ["period", "menstrual", "cramps"], response: "If you're in discomfort, the clinic can help with pain relief and advice. You’re welcome to walk in." },
-    { keywords: ["covid", "corona"], response: "If you're experiencing symptoms like cough, fever, or loss of smell, isolate and visit the clinic immediately for a test." },
+    { keywords: ["covid", "corona", "cough"], response: "If you're experiencing symptoms like cough, fever, or loss of smell, isolate and visit the clinic immediately for a test." },
     { keywords: ["vaccine", "test"], response: "You can inquire about available vaccines and tests at the clinic reception during working hours." },
     { keywords: ["appointment"], response: "Use the form on the website to book a consultation or visit the clinic directly." },
     { keywords: ["hello", "hi"], response: "Hi! How can I assist you with your health today?" },
     { keywords: ["thank you", "thanks"], response: "You're welcome! Stay safe and healthy." },
-    { keywords: ["what should i do", "help me"], response: "You can tell me what you're experiencing or go directly to the health center if it feels urgent." }
+    { keywords: ["what should i do", "help me", "help"], response: "You can tell me what you're experiencing or go directly to the health center if it feels urgent." }
   ];
 
   for (const entry of responseMap) {
